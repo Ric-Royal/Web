@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+body {
+  @apply font-sans antialiased;
+}
+
+/* In your CSS or Tailwind config */
+.section:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s;
+}
+
