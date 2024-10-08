@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Ric-Royal/Professional-Website/tree/main/5ded3945-1d13-4f72-816d-a7d82527a1a2/static/css/main.e3608ac8.css",
+    "main.js": "/Ric-Royal/Professional-Website/tree/main/5ded3945-1d13-4f72-816d-a7d82527a1a2/static/js/main.3410ef29.js",
+    "index.html": "/Ric-Royal/Professional-Website/tree/main/5ded3945-1d13-4f72-816d-a7d82527a1a2/index.html",
+    "main.e3608ac8.css.map": "/Ric-Royal/Professional-Website/tree/main/5ded3945-1d13-4f72-816d-a7d82527a1a2/static/css/main.e3608ac8.css.map",
+    "main.3410ef29.js.map": "/Ric-Royal/Professional-Website/tree/main/5ded3945-1d13-4f72-816d-a7d82527a1a2/static/js/main.3410ef29.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e3608ac8.css",
+    "static/js/main.3410ef29.js"
+  ]
+}
