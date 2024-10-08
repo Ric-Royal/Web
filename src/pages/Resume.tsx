@@ -12,7 +12,7 @@ const Resume: React.FC = () => {
         {/* Profile Picture */}
         <div className="flex justify-center mb-6">
           <img
-            src={`${process.env.PUBLIC_URL}/images/path-to-your-photo.jpg`} // Replace with the actual path to your profile picture
+            src={`images/path-to-your-photo.jpg`} // Replace with the actual path to your profile picture
             alt="Richard K"
             className="w-32 h-32 rounded-full object-cover"
           />
