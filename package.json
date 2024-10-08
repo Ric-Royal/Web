@@ -2,7 +2,7 @@
   "name": "your-app-name",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/Ric-Royal/Professional-Website/tree/main/5ded3945-1d13-4f72-816d-a7d82527a1a2",
+  "homepage": "https://Ric-Royal.github.io/Web",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@radix-ui/react-tabs": "^1.1.1",
