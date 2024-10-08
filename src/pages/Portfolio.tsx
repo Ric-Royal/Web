@@ -21,21 +21,21 @@ const projects: Project[] = [
     title: 'Data Warehouse Implementation',
     description:
       'Led the design and implementation of a comprehensive data warehouse for a leading financial institution. This project streamlined data management and accessibility, enabling the institution to efficiently consolidate and utilize its data, resulting in more accurate and timely business decisions.',
-    image: '${process.env.PUBLIC_URL}/images/data-warehouse.jpg',
+    image: 'images/data-warehouse.jpg',
     link: 'https://medium.com/@Ric_Royal/understanding-data-warehouses-exploring-data-structures-and-indexing-methods-f713f783f78a?source=user_profile_page---------4-------------2bfb597f684a---------------',
   },
   {
     title: 'AI-Driven Decision Making Research',
     description:
       'Presented research on AI-driven decision-making at international conferences, focusing on how AI and machine learning can be integrated into business processes to enhance operational efficiency and drive strategic innovation.',
-    image: '${process.env.PUBLIC_URL}/images/ai-research.jpg',
+    image: 'images/ai-research.jpg',
     link: 'https://medium.com/@Ric_Royal/data-driven-decision-making-in-aml-cft-cpf-a-case-study-of-kenya-b9f38b38c187?source=user_profile_page---------0-------------2bfb597f684a---------------',
   },
   {
     title: 'Machine Learning-Based Solutions',
     description:
       'Built machine learning models to optimize marketing campaigns and designed algorithms for financial forecasting. These solutions have helped businesses across various sectors to predict trends, automate processes, and make data-driven decisions.',
-    image: '${process.env.PUBLIC_URL}/images/ml-solutions.jpg',
+    image: 'images/ml-solutions.jpg',
     link: 'https://github.com/Ric-Royal/Code-Concepts/tree/main/Code',
   },
 ];
