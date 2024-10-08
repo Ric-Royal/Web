@@ -39,7 +39,7 @@ const Blog: React.FC = () => {
               link: item.link,
               pubDate: item.pubDate,
               contentSnippet: item.contentSnippet,
-              thumbnail: '/images/hero-background.jpg', // Static image
+              thumbnail: `${process.env.PUBLIC_URL}/images/hero-background.jpg`, // Static image
               categories: item.categories,
               content: item.content,
             };

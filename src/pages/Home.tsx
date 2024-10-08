@@ -37,7 +37,7 @@ const Home: React.FC = () => {
       >
         <div
           className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: "url('/images/hero-background.jpg')" }}
+          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/hero-background.jpg)` }}
         ></div>
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-6">
           <h1 className="text-5xl md:text-6xl font-extrabold text-purple-500 mb-6 text-center">
