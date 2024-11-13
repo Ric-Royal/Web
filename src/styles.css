@@ -13,3 +13,9 @@ body {
   transition: transform 0.2s;
 }
 
+/* Custom styles for dark mode */
+@layer base {
+  body {
+    @apply bg-gray-900 text-white;
+  }
+}
