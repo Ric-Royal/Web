@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 const Contact: React.FC = () => {
   // State for form fields
@@ -11,6 +12,9 @@ const Contact: React.FC = () => {
   // State for form submission status and errors
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  // Initialize EmailJS
+  emailjs.init('jaoQ9v7yR073yKtHr');
 
   // Handle input changes
   const handleChange = (
