@@ -5,25 +5,28 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     let ticking = false;
-
+  
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const heroHeight = window.innerHeight;
           const scrollTop = window.scrollY;
-          const newOpacity = Math.max(1 - scrollTop / heroHeight, 0.5); // Maintain minimum opacity
+          const newOpacity = Math.max(1 - scrollTop / heroHeight, 0);
           setOpacity(newOpacity);
           ticking = false;
         });
-
+  
         ticking = true;
       }
     };
-
+  
     window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
+  
 
   return (
     <div className="text-white">
@@ -32,23 +35,21 @@ const Home: React.FC = () => {
         className="relative bg-gray-900 text-white overflow-hidden transition-opacity duration-500"
         style={{ opacity }}
       >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black opacity-50"></div>
         <div
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/hero-background.jpg)` }}
-          aria-hidden="true"
         ></div>
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-6">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-purple-500 mb-6 text-center">
-          Ric-Royal Data Consultant
-        </h1>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-purple-500 mb-6 text-center">
+            Ric-Royal Data Consultant
+          </h1>
           <p className="text-xl md:text-2xl text-gray-100 mb-8 text-center max-w-2xl">
-            Turning complex data into actionable insights. Empowering businesses through data-driven strategies.
+            Turning complex data into actionable insights. Empowering businesses
+            through data-driven strategies.
           </p>
           <a
             href="#about"
-            className="px-8 py-4 bg-purple-600 text-white font-semibold rounded-full shadow-lg hover:bg-purple-700 transition transform hover:-translate-y-1"
+            className="px-8 py-4 bg-purple-600 text-white font-semibold rounded-full shadow-lg hover:bg-purple-700 transition duration-300"
           >
             Learn More
           </a>
@@ -62,7 +63,12 @@ const Home: React.FC = () => {
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </a>
         </div>

@@ -1,7 +1,6 @@
 // src/pages/Blog.tsx
 
 import React, { useState, useEffect } from 'react';
-import LazyLoad from 'react-lazyload'; // Install react-lazyload
 
 interface Post {
   title: string;
@@ -34,23 +33,29 @@ const Blog: React.FC = () => {
         const data = await response.json();
 
         if (data.status === 'ok') {
-          const postsWithStaticImage = data.items.map((item: any): Post => ({
-            title: item.title,
-            link: item.link,
-            pubDate: item.pubDate,
-            contentSnippet: item.contentSnippet,
-            thumbnail: `${process.env.PUBLIC_URL}/images/hero-background.jpg`, // Use a placeholder or dynamic images
-            categories: item.categories,
-            content: item.content,
-          }));
+          const postsWithStaticImage = data.items.map((item: any): Post => {
+            const post: Post = {
+              title: item.title,
+              link: item.link,
+              pubDate: item.pubDate,
+              contentSnippet: item.contentSnippet,
+              thumbnail: `${process.env.PUBLIC_URL}/images/hero-background.jpg`, // Static image
+              categories: item.categories,
+              content: item.content,
+            };
+            return post;
+          });
 
           setPosts(postsWithStaticImage);
           setFilteredPosts(postsWithStaticImage);
 
           // Extract unique categories
           const uniqueCategories = Array.from(
-            new Set(postsWithStaticImage.flatMap((post: Post) => post.categories))
-          );
+            new Set(
+              postsWithStaticImage.flatMap((post: Post) => post.categories)
+            )
+          ) as string[];
+
           setCategories(uniqueCategories);
         } else {
           console.error('Error fetching blog posts:', data.message);
@@ -65,29 +70,45 @@ const Blog: React.FC = () => {
     fetchPosts();
   }, []);
 
-  // Handle search and filter
-  useEffect(() => {
-    let tempPosts = [...posts];
+  // Handle search input changes
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    filterPosts(query, selectedCategory);
+  };
 
-    if (selectedCategory) {
-      tempPosts = tempPosts.filter((post) => post.categories.includes(selectedCategory));
-    }
+  // Handle category filter changes
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const category = e.target.value;
+    setSelectedCategory(category);
+    filterPosts(searchQuery, category);
+  };
 
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      tempPosts = tempPosts.filter(
-        (post) =>
-          post.title.toLowerCase().includes(query) ||
-          post.contentSnippet.toLowerCase().includes(query)
+  // Filter posts based on search query and selected category
+  const filterPosts = (query: string, category: string) => {
+    let filtered = posts;
+
+    if (category) {
+      filtered = filtered.filter((post) =>
+        post.categories.includes(category)
       );
     }
 
-    setFilteredPosts(tempPosts);
-  }, [searchQuery, selectedCategory, posts]);
+    if (query) {
+      const lowerCaseQuery = query.toLowerCase();
+      filtered = filtered.filter(
+        (post) =>
+          post.title.toLowerCase().includes(lowerCaseQuery) ||
+          post.contentSnippet.toLowerCase().includes(lowerCaseQuery)
+      );
+    }
+
+    setFilteredPosts(filtered);
+  };
 
   if (loading) {
     return (
-      <div className="max-w-6xl mx-auto p-4 text-center text-gray-300">
+      <div className="max-w-6xl mx-auto p-4">
         <p>Loading blog posts...</p>
       </div>
     );
@@ -101,23 +122,21 @@ const Blog: React.FC = () => {
       </p>
 
       {/* Search and Filter Bar */}
-      <div className="flex flex-col md:flex-row items-center justify-between mb-8 space-y-4 md:space-y-0">
+      <div className="flex flex-col md:flex-row items-center justify-between mb-8">
         {/* Search Bar */}
         <input
           type="text"
           placeholder="Search posts..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          aria-label="Search posts"
-          className="w-full md:w-1/2 px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+          onChange={handleSearchChange}
+          className="w-full md:w-1/2 px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded mb-4 md:mb-0"
         />
 
         {/* Category Filter */}
         <select
           value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          aria-label="Filter by category"
-          className="w-full md:w-1/4 px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+          onChange={handleCategoryChange}
+          className="w-full md:w-1/4 px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded"
         >
           <option value="">All Categories</option>
           {categories.map((category, index) => (
@@ -134,16 +153,14 @@ const Blog: React.FC = () => {
           filteredPosts.map((post, index) => (
             <div
               key={index}
-              className="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300"
+              className="bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-200"
             >
               <a href={post.link} target="_blank" rel="noopener noreferrer">
-                <LazyLoad height={200} offset={100} once>
-                  <img
-                    src={post.thumbnail}
-                    alt={`Thumbnail for ${post.title}`}
-                    className="w-full h-48 object-cover"
-                  />
-                </LazyLoad>
+                <img
+                  src={post.thumbnail}
+                  alt={post.title}
+                  className="w-full h-48 object-cover"
+                />
               </a>
               <div className="p-4">
                 <a href={post.link} target="_blank" rel="noopener noreferrer">
@@ -175,12 +192,9 @@ const Blog: React.FC = () => {
             </div>
           ))
         ) : (
-          <p className="text-white col-span-full text-center">No posts found.</p>
+          <p className="text-white">No posts found.</p>
         )}
       </div>
-
-      {/* Optional: Pagination Controls */}
-      {/* Implement pagination or infinite scroll here */}
     </div>
   );
 };
