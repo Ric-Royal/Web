@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import emailjs from 'emailjs-com';
 
 const Contact: React.FC = () => {
@@ -13,8 +13,10 @@ const Contact: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  // Initialize EmailJS
-  emailjs.init('jaoQ9v7yR073yKtHr');
+  // Initialize EmailJS when the component mounts
+  useEffect(() => {
+    emailjs.init('jaoQ9v7yR073yKtHr');
+  }, []);
 
   // Handle input changes
   const handleChange = (
@@ -57,15 +59,14 @@ const Contact: React.FC = () => {
 
     setStatus('sending');
 
-    // Send form data via EmailJS using the global emailjs object
-    (window as any).emailjs
+    emailjs
       .send(
-        'service_in4h0p8', // Replace with your EmailJS Service ID
-        'template_s52p6bm', // Replace with your EmailJS Template ID
+        'service_in4h0p8',
+        'template_s52p6bm',
         formData
       )
       .then(
-        (response: any) => {
+        (response) => {
           console.log('SUCCESS!', response.status, response.text);
           setStatus('sent');
           // Reset form fields
@@ -75,7 +76,7 @@ const Contact: React.FC = () => {
             message: '',
           });
         },
-        (err: any) => {
+        (err) => {
           console.error('FAILED...', err);
           setStatus('error');
         }
