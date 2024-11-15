@@ -59,28 +59,26 @@ const Contact: React.FC = () => {
 
     setStatus('sending');
 
-    emailjs
-      .send(
-        'service_in4h0p8',
-        'template_s52p6bm',
-        formData
-      )
-      .then(
-        (response) => {
-          console.log('SUCCESS!', response.status, response.text);
-          setStatus('sent');
-          // Reset form fields
-          setFormData({
-            from_name: '',
-            reply_to: '',
-            message: '',
-          });
-        },
-        (err) => {
-          console.error('FAILED...', err);
-          setStatus('error');
-        }
-      );
+    emailjs.send(
+      'service_in4h0p8',     // Service ID
+      'template_s52p6bm',    // Template ID
+      formData                // Form data
+    )
+    .then(
+      (response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        setStatus('sent');
+        setFormData({
+          from_name: '',
+          reply_to: '',
+          message: '',
+        });
+      },
+      (err) => {
+        console.error('FAILED...', err);
+        setStatus('error');
+      }
+    );
   };
 
   return (
