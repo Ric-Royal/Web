@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 const Contact: React.FC = () => {
   // State for form fields
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    from_name: '',
+    reply_to: '',
     message: '',
   });
 
@@ -24,15 +24,15 @@ const Contact: React.FC = () => {
   // Validate form data
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required.';
+    if (!formData.from_name.trim()) {
+      newErrors.from_name = 'Name is required.';
     }
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required.';
+    if (!formData.reply_to.trim()) {
+      newErrors.reply_to = 'Email is required.';
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.reply_to)
     ) {
-      newErrors.email = 'Invalid email address.';
+      newErrors.reply_to = 'Invalid email address.';
     }
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required.';
@@ -66,8 +66,8 @@ const Contact: React.FC = () => {
           setStatus('sent');
           // Reset form fields
           setFormData({
-            name: '',
-            email: '',
+            from_name: '',
+            reply_to: '',
             message: '',
           });
         },
@@ -108,48 +108,48 @@ const Contact: React.FC = () => {
               {/* Name Field */}
               <div>
                 <label
-                  htmlFor="name"
+                  htmlFor="from_name"
                   className="block text-lg font-medium"
                 >
                   Name
                 </label>
                 <input
                   type="text"
-                  name="name"
-                  id="name"
+                  name="from_name"
+                  id="from_name"
                   required
-                  value={formData.name}
+                  value={formData.from_name}
                   onChange={handleChange}
                   className={`mt-1 block w-full px-4 py-2 bg-gray-800 text-white border ${
-                    errors.name ? 'border-red-500' : 'border-gray-600'
+                    errors.from_name ? 'border-red-500' : 'border-gray-600'
                   } rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500`}
                 />
-                {errors.name && (
-                  <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+                {errors.from_name && (
+                  <p className="text-red-400 text-sm mt-1">{errors.from_name}</p>
                 )}
               </div>
 
               {/* Email Field */}
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="reply_to"
                   className="block text-lg font-medium"
                 >
                   Email
                 </label>
                 <input
                   type="email"
-                  name="email"
-                  id="email"
+                  name="reply_to"
+                  id="reply_to"
                   required
-                  value={formData.email}
+                  value={formData.reply_to}
                   onChange={handleChange}
                   className={`mt-1 block w-full px-4 py-2 bg-gray-800 text-white border ${
-                    errors.email ? 'border-red-500' : 'border-gray-600'
+                    errors.reply_to ? 'border-red-500' : 'border-gray-600'
                   } rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500`}
                 />
-                {errors.email && (
-                  <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                {errors.reply_to && (
+                  <p className="text-red-400 text-sm mt-1">{errors.reply_to}</p>
                 )}
               </div>
 
