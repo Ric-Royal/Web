@@ -15,28 +15,28 @@ const projects: Project[] = [
     description:
       'Developed a comprehensive medical data management system with enterprise-grade security. Features include role-based access control, field-level encryption, Keycloak authentication, and microservices architecture. Built with React, Node.js, PostgreSQL, and Docker orchestration for 16+ services.',
     image: 'images/hero-background.jpg',
-    link: 'https://github.com/Ric-Royal',
+    link: 'https://github.com/Ric-Royal/MediMesh---Update',
   },
   {
     title: 'CIVILBOT - AI-Powered Legislative Assistant',
     description:
       'Created an intelligent WhatsApp bot for civic engagement using NLP and knowledge graphs. Features multi-language support, real-time bill tracking, and automated notifications. Integrates Neo4j, Ollama AI, and Twilio for comprehensive public participation in legislative processes.',
     image: 'images/ai-research.jpg',
-    link: 'https://github.com/Ric-Royal',
+    link: 'https://github.com/Ric-Royal/bills_pdfs',
   },
   {
     title: 'AML Graph Network Analysis with LLM',
     description:
       'Built an advanced money laundering detection system using graph network analysis and large language models. Features interactive visualization, suspicious transaction pattern detection, and natural language analysis powered by Ollama. Includes comprehensive network metrics and automated reporting.',
     image: 'images/data-warehouse.jpg',
-    link: 'https://github.com/Ric-Royal',
+    link: 'https://github.com/Ric-Royal/AML-Graph-Network-Analysis-with-LLM',
   },
   {
     title: 'Agri-Insights - Agricultural Market Analytics Platform',
     description:
       'Developed a comprehensive agricultural market analytics platform with ML-powered price predictions, weather impact analysis, and real-time commodity monitoring. Features interactive dashboards, seasonal pattern detection, and trading volume analysis using FastAPI, PostgreSQL, and React.',
     image: 'images/ml-solutions.jpg',
-    link: 'https://github.com/Ric-Royal',
+    link: 'https://github.com/Ric-Royal/saas/tree/main/services',
   },
   {
     title: 'Advanced Algorithmic Trading System',
@@ -50,7 +50,7 @@ const projects: Project[] = [
     description:
       'Architected a complete enterprise SaaS platform with 5 interconnected services for civic engagement, agricultural insights, and content management. Features Docker/Kubernetes orchestration, advanced monitoring with Prometheus/Grafana, and comprehensive security hardening.',
     image: 'images/data-warehouse.jpg',
-    link: 'https://github.com/Ric-Royal',
+    link: 'https://github.com/Ric-Royal/saas',
   },
   {
     title: 'Machine Learning Code Concepts Repository',
@@ -64,7 +64,7 @@ const projects: Project[] = [
     description:
       'Built a modern task management application with SMS notifications via Twilio. Features priority levels, status tracking, automatic scheduling, responsive web interface, and comprehensive logging. Includes real-time notifications and phone number validation.',
     image: 'images/ai-research.jpg',
-    link: 'https://github.com/Ric-Royal',
+    link: 'https://github.com/Ric-Royal/tasktracker',
   },
 ];
 
