@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import emailjs from 'emailjs-com';
+import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   // State for form fields
@@ -13,10 +13,7 @@ const Contact: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  // Initialize EmailJS when the component mounts
-  useEffect(() => {
-    emailjs.init('jaoQ9v7yR073yKtHr');
-  }, []);
+  // No initialization needed with @emailjs/browser v4
 
   // Handle input changes
   const handleChange = (
@@ -59,10 +56,17 @@ const Contact: React.FC = () => {
 
     setStatus('sending');
 
+    // Using the modern EmailJS v4 API
     emailjs.send(
       'service_in4h0p8',     // Service ID
       'template_s52p6bm',    // Template ID
-      formData                // Form data
+      {
+        from_name: formData.from_name,
+        reply_to: formData.reply_to,
+        message: formData.message,
+        to_email: 'richardkabiru6@gmail.com' // Your email
+      },
+      'jaoQ9v7yR073yKtHr'    // Public Key (moved to 4th parameter)
     )
     .then(
       (response) => {
@@ -73,6 +77,8 @@ const Contact: React.FC = () => {
           reply_to: '',
           message: '',
         });
+        // Clear any errors
+        setErrors({});
       },
       (err) => {
         console.error('FAILED...', err);
@@ -103,7 +109,19 @@ const Contact: React.FC = () => {
           ) : status === 'error' ? (
             <div className="text-center text-red-400">
               <h3 className="text-2xl font-semibold mb-4">Oops!</h3>
-              <p>Something went wrong. Please try again later.</p>
+              <p className="mb-4">Something went wrong. Please try again later.</p>
+              <p className="text-sm text-gray-400">
+                If the problem persists, you can reach me directly at{' '}
+                <a href="mailto:richardkabiru6@gmail.com" className="text-purple-400 hover:text-purple-300">
+                  richardkabiru6@gmail.com
+                </a>
+              </p>
+              <button
+                onClick={() => setStatus('idle')}
+                className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors"
+              >
+                Try Again
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
