@@ -36,8 +36,10 @@ const Home: React.FC = () => {
         style={{ opacity }}
       >
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
+          className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/hero-background.jpg)` }}
+          role="img"
+          aria-label="Background image showing data visualization and analytics concepts"
         ></div>
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-6">
           <h1 className="text-5xl md:text-6xl font-extrabold text-purple-500 mb-6 text-center">
@@ -75,46 +77,48 @@ const Home: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div id="about" className="max-w-4xl mx-auto p-6">
-        <h1 className="text-4xl font-bold mb-6 text-center">About Me</h1>
+      <div id="about" className="max-w-4xl mx-auto p-6 pt-12">
+        <h1 className="text-4xl font-bold mb-8 text-center">About Me</h1>
 
         {/* Introduction Section */}
-        <section className="mb-10">
-          <h2 className="text-3xl font-semibold mb-4">Introduction</h2>
-          <p className="text-lg leading-relaxed mb-4">
-            Hi, I’m <span className="font-bold">Richard K</span>, a passionate
-            data professional with over five years of experience in the
-            industry. My career is rooted in transforming complex data into
-            actionable insights, helping organizations optimize their operations,
-            drive growth, and make data-driven decisions.
-          </p>
-          <p className="text-lg leading-relaxed mb-4">
-            I specialize in areas such as data analysis, machine learning, and
-            predictive modeling, leveraging these skills to solve real-world
-            problems in sectors like telecommunications, finance, and security.
-          </p>
-          <p className="text-lg leading-relaxed">
-            Outside of work, I enjoy mentoring upcoming data professionals and
-            contributing to the global conversation on data science through
-            presentations and publications. I’m also passionate about continuing
-            education, particularly in artificial intelligence and machine
-            learning.
-          </p>
+        <section className="mb-12">
+          <h2 className="text-3xl font-semibold mb-6 text-purple-400">Introduction</h2>
+          <div className="space-y-6">
+            <p className="text-lg leading-relaxed">
+              Hi, I'm <span className="font-bold text-purple-400">Richard K</span>, a passionate
+              data professional with over five years of experience in the
+              industry. My career is rooted in transforming complex data into
+              actionable insights, helping organizations optimize their operations,
+              drive growth, and make data-driven decisions.
+            </p>
+            <p className="text-lg leading-relaxed">
+              I specialize in areas such as data analysis, machine learning, and
+              predictive modeling, leveraging these skills to solve real-world
+              problems in sectors like telecommunications, finance, and security.
+            </p>
+            <p className="text-lg leading-relaxed">
+              Outside of work, I enjoy mentoring upcoming data professionals and
+              contributing to the global conversation on data science through
+              presentations and publications. I'm also passionate about continuing
+              education, particularly in artificial intelligence and machine
+              learning.
+            </p>
+          </div>
         </section>
 
         <hr className="border-t border-gray-700 mb-10" />
 
         {/* Professional Journey Section */}
-        <section className="mb-10">
-          <h2 className="text-3xl font-semibold mb-4">Professional Journey</h2>
+        <section className="mb-12">
+          <h2 className="text-3xl font-semibold mb-6 text-purple-400">Professional Journey</h2>
           <Timeline />
         </section>
 
-        <hr className="border-t border-gray-700 mb-10" />
+        <hr className="border-t border-gray-700 mb-12" />
 
         {/* Education & Certifications Section */}
         <section>
-          <h2 className="text-3xl font-semibold mb-4">
+          <h2 className="text-3xl font-semibold mb-6 text-purple-400">
             Education & Certifications
           </h2>
           <EducationAccordion />
@@ -183,16 +187,17 @@ const Timeline: React.FC = () => {
     <div className="relative">
       <div className="border-l-2 border-purple-500 absolute h-full left-4 top-0"></div>
       {experiences.map((exp, index) => (
-        <div key={index} className="mb-8 pl-8 relative">
+        <div key={index} className="mb-10 pl-10 relative">
           <div className="absolute left-[-0.6rem] top-0 w-4 h-4 bg-purple-500 rounded-full"></div>
-          <h3 className="text-2xl font-bold mb-1">{exp.title}</h3>
-          <p className="text-lg text-gray-500 mb-2">
+          <h3 className="text-2xl font-bold mb-2 text-white">{exp.title}</h3>
+          <p className="text-lg text-purple-300 mb-4 font-semibold">
             {exp.duration} | {exp.company}
           </p>
-          <ul className="list-disc list-inside text-lg leading-relaxed">
+          <ul className="space-y-3 text-base leading-relaxed text-gray-300">
             {exp.responsibilities.map((item, idx) => (
-              <li key={idx} className="mb-2">
-                {item}
+              <li key={idx} className="flex items-start">
+                <span className="text-purple-400 mr-2 mt-1">•</span>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
