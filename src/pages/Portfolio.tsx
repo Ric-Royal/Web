@@ -43,7 +43,7 @@ const projects: Project[] = [
     description:
       'Created multiple sophisticated trading bots with GPT-4 integration, including momentum, mean reversion, and news-based strategies. Features comprehensive risk management, MetaTrader 5 integration, multi-timeframe analysis, and real-time performance tracking with emergency safety protocols.',
     image: 'images/hero-background.jpg',
-    link: 'https://github.com/Ric-Royal/Code-Concepts',
+    link: 'https://github.com/Ric-Royal/single_tweak_bot',
   },
   {
     title: 'SaaS Microservices Platform',
