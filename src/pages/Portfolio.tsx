@@ -22,7 +22,7 @@ const projects: Project[] = [
     description:
       'Created an intelligent WhatsApp bot for civic engagement using NLP and knowledge graphs. Features multi-language support, real-time bill tracking, and automated notifications. Integrates Neo4j, Ollama AI, and Twilio for comprehensive public participation in legislative processes.',
     image: 'images/ai-research.jpg',
-    link: 'https://github.com/Ric-Royal/bills_pdfs',
+    link: 'https://github.com/Ric-Royal/Public-Participation',
   },
   {
     title: 'AML Graph Network Analysis with LLM',
